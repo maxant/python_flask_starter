@@ -1,6 +1,6 @@
 import unittest
 
-from db import find_users
+from users import find_users, create_user, delete_user
 
 
 class TestDb(unittest.TestCase):
@@ -16,9 +16,13 @@ class TestDb(unittest.TestCase):
         # checking of a column called id in the zeroth row
         self.assertEqual(users[0]['id'], 1)
 
-        self.assertEqual(users[0]['email'], 'ant@somerandomdomain.com') # check the email address
+        self.assertEqual(users[0]['email'], 'ant@somerandomdomain.com')  # check the email address
 
         # other examples:
         # assertTrue
         # assertFalse
         # with self.assertRaises(TypeError):
+
+    def test_create_delete_user(self):
+        user_id = create_user("john@domain.com", "secret")
+        delete_user(user_id)
